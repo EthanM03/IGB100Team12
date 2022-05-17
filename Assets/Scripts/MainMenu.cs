@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public Text highScore;
+    //public Text highScore;
 
     // Start is called before the first frame update
     void Start()
     {
-        highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        //highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     // Update is called once per frame
@@ -21,8 +21,13 @@ public class MainMenu : MonoBehaviour
         
     }
     
-    public void loadScene(string levelname)
+    public void loadScene(int scenceIndex)
     {
-        SceneManager.LoadScene("levelname");
+        SceneManager.LoadScene(scenceIndex);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
