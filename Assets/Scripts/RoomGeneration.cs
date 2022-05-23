@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomGeneration : MonoBehaviour
 {
     //Room prefabs
     public GameObject deadEnd;
+    public int reqIE = 6;
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
@@ -38,7 +40,12 @@ public class RoomGeneration : MonoBehaviour
         
         //Add rooms
         SpawnChildRooms(startingRoom, null);
+        if (roomsSpawned < reqIE)
+        {
+            SceneManager.LoadScene("MainLevel");
+        }
         SpawnIE();
+
     }
 
     // Update is called once per frame
@@ -263,7 +270,6 @@ public class RoomGeneration : MonoBehaviour
 
     public void SpawnIE()
     {
-        int reqIE = 6;
         GameObject[] temp = new GameObject[roomsSpawned-reqIE];
         int bossDoorLocation = Random.Range(1, roomsSpawned-1);
         int lever1Location = Random.Range(1, roomsSpawned-1);
