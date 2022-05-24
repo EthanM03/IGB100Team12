@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class MessingAround : MonoBehaviour
 {
@@ -44,7 +45,10 @@ public class MessingAround : MonoBehaviour
         {
             SceneManager.LoadScene("MainLevel");
         }
+        //build the nav mesh here
+        
         SpawnIE();
+
 
     }
 
@@ -368,6 +372,8 @@ public class MessingAround : MonoBehaviour
                     //instantiate
                     GameObject enemyObject = Instantiate(enemy1, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
+                    enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
                 }
                 else if (result > chanceEnemy1 && result <chanceEnemy1 + chanceEnemy2)
                 {
@@ -378,6 +384,8 @@ public class MessingAround : MonoBehaviour
                     //instantiate
                     GameObject enemyObject = Instantiate(enemy2, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
+                    enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
                 }
                 else if (result > chanceEnemy1 + chanceEnemy2 && result <chanceEnemy1 + chanceEnemy2 + chanceEnemy3)
                 {
@@ -388,6 +396,8 @@ public class MessingAround : MonoBehaviour
                     //instantiate
                     GameObject enemyObject = Instantiate(enemy3, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
+                    enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
                 }
                 else if (result > chanceEnemy1 + chanceEnemy2 + chanceEnemy3 && result <chanceEnemy1 + chanceEnemy2 + chanceEnemy3 + chanceHealthBox)
                 {

@@ -46,6 +46,7 @@ public class RoomGeneration : MonoBehaviour
             SceneManager.LoadScene("MainLevel");
         }
         //build the nav mesh here
+        
         SpawnIE();
 
 
