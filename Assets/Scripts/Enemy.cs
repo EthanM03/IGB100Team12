@@ -9,9 +9,12 @@ public class Enemy : MonoBehaviour {
 
     public float health = 100;
 
-    public GameObject target;
+    public GameObject Playertarget;
 
-    private float damage = 25;
+    public GameObject Spawnertarget;
+    public bool targetingPlayer;
+
+    private float damage = 10;
     private float damageTime;
     private float damageRate = 0.5f;
 
@@ -21,29 +24,39 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
+        //targetingPlayer = false;
         
         //player reference exception catch
         try
         {
-            target = GameObject.FindGameObjectWithTag("Player");
+            //this will be the bit where you have to change the target
+            Playertarget = GameObject.FindGameObjectWithTag("Player");
         }
         catch 
         {
             
-            target = null;
+            Playertarget = null;
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
         Movement();
+        Debug.Log(targetingPlayer);
 	}
+
+    
 
     private void Movement()
     {
-        if (target)
+        if (Playertarget && targetingPlayer)
         {
-            agent.destination = target.transform.position;
+            agent.destination = Playertarget.transform.position;
+        }
+        else
+        {
+            agent.destination = Spawnertarget.transform.position;
         }
     }
 
