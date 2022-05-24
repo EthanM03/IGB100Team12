@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour {
 	void Update () {
         
         Movement();
-        Debug.Log(targetingPlayer);
+        
 	}
 
     

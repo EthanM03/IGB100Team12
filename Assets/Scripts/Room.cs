@@ -35,6 +35,7 @@ public class Room : MonoBehaviour
     {
         if (IE != null && IE.GetComponent<Enemy>() != null)
         {
+            
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
@@ -44,7 +45,7 @@ public class Room : MonoBehaviour
                 float zMax = Mathf.Max(corner1.transform.position.z,corner3.transform.position.z);
                 float zMin = Mathf.Min(corner1.transform.position.z,corner3.transform.position.z);
 
-                if (player.transform.position.x >= xMin && player.transform.position.x <= xMin && player.transform.position.z >= zMin && player.transform.position.z <= zMax)
+                if (player.transform.position.x >= xMin && player.transform.position.x <= xMax && player.transform.position.z >= zMin && player.transform.position.z <= zMax)
                 {
                     //player is in room
                     if (IE.GetComponent<Enemy>().targetingPlayer == false)
