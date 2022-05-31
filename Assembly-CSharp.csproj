@@ -51,6 +51,10 @@
      <Compile Include="Assets\Scripts\MessingAround.cs" />
      <Compile Include="Assets\Scripts\Room.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Anim.cs" />
+     <Compile Include="Assets\Prefabs\prefabs_enemy\RopeRoot.cs" />
+     <Compile Include="Assets\Prefabs\prefabs_enemy\FrictionJoint3D.cs" />
+     <Compile Include="Assets\Prefabs\prefabs_enemy\DistanceJoint3D.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
