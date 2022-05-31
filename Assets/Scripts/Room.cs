@@ -36,6 +36,7 @@ public class Room : MonoBehaviour
         if (IE != null && IE.GetComponent<Enemy>() != null)
         {
             
+            
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
@@ -56,6 +57,7 @@ public class Room : MonoBehaviour
                 }
                 else
                 {
+                    //Debug.Log("Player not in room");
                     //player not in the room
                     if (IE.GetComponent<Enemy>().targetingPlayer == true)
                     {

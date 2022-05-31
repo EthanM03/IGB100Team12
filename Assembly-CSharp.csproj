@@ -766,8 +766,14 @@
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
         <HintPath>C:\Users\ethan\OneDrive\Documents\1- Current\IGB100\Cycle 3\Github-HighFidelityPrototype\IGB100Team12\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.AI.Navigation">
+        <HintPath>C:\Users\ethan\OneDrive\Documents\1- Current\IGB100\Cycle 3\Github-HighFidelityPrototype\IGB100Team12\Library\ScriptAssemblies\Unity.AI.Navigation.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
         <HintPath>C:\Users\ethan\OneDrive\Documents\1- Current\IGB100\Cycle 3\Github-HighFidelityPrototype\IGB100Team12\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AI.Navigation.Editor">
+        <HintPath>C:\Users\ethan\OneDrive\Documents\1- Current\IGB100\Cycle 3\Github-HighFidelityPrototype\IGB100Team12\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Monetization">
         <HintPath>C:\Users\ethan\OneDrive\Documents\1- Current\IGB100\Cycle 3\Github-HighFidelityPrototype\IGB100Team12\Library\ScriptAssemblies\UnityEngine.Monetization.dll</HintPath>
