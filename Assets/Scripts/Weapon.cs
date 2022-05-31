@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
             Instantiate(muzzleFlash, muzzle.transform.position, muzzle.transform.rotation);
             animation.Play("Fire");
 
-            //raycase projectile
+            //raycast projectile
             RaycastHit hit;
             if(Physics.Raycast(muzzle.transform.position, -(muzzle.transform.position-target.transform.position).normalized, out hit, 50.0f))
             {

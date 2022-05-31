@@ -7,8 +7,10 @@ public class Player : MonoBehaviour {
 
     public float health = 100;
     private float maxHealth;
+    public GameObject weapon;
 
     public GameObject mainCamera;
+    public float reach = 20.0f;
 
     //UI Elements
     public Slider healthbar;
@@ -16,10 +18,12 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         maxHealth = health;
+        weapon = null;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 
 	}
 
@@ -33,4 +37,23 @@ public class Player : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
+
+    public void interact()
+    {
+        //find what the player is looking at
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, reach))
+        {
+            if(hit.transform.tag == "Weapon")
+            {
+                hit.transform.GetComponent<MeleeWeapon>().potentialSwap();
+            }
+            if (hit.transform.tag == "Lever")
+            {
+                //lever stuff here
+            }
+        }
+    }
+
+
 }
