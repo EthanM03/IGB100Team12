@@ -421,6 +421,7 @@ public class RoomGeneration : MonoBehaviour
                     Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
                     Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
                     //instantiate
+                    IEPos += new Vector3 (0,1,0);
                     GameObject healthBoxObject = Instantiate(healthBox, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = healthBoxObject;
                 }

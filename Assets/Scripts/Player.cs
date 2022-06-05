@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     public float health = 100;
     private float maxHealth;
     public GameObject weapon;
+    public float healthRestore = 10;
 
     public GameObject mainCamera;
     public float reach = 20.0f;
@@ -54,6 +55,23 @@ public class Player : MonoBehaviour {
             }
         }
     }
-
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Health")
+        {
+            if (health < (100-healthRestore))
+            {
+                health += healthRestore;
+                Destroy(other.gameObject);
+            }
+            else if (health < 100)
+            {
+                health = 100;
+                Destroy(other.gameObject);
+            }
+            
+            healthbar.value = (health / maxHealth);
+        }
+    }
 
 }
