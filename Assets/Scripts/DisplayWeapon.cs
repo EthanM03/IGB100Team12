@@ -69,9 +69,9 @@ public class DisplayWeapon : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (this.gameObject && collision.gameObject.CompareTag("Player"))
         {
             isInRange = true;
             
@@ -95,9 +95,9 @@ public class DisplayWeapon : MonoBehaviour
     }
     
 
-    private void OnTriggerExit(Collider collision)
+    void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (this.gameObject && collision.gameObject.CompareTag("Player"))
         {
             isInRange = false;
             interactText.text = "";

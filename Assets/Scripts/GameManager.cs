@@ -119,13 +119,27 @@ public class GameManager : MonoBehaviour {
     // }
     public void DisplayStats(bool active, int i)
     {
+        Debug.Log(active);
         int j = player.GetComponent<Player>().weapon;
-        currentName.gameObject.SetActive(active);
-        currentSpeed.gameObject.SetActive(active);
-        currentDamage.gameObject.SetActive(active);
-        weaponName.gameObject.SetActive(active);
-        weaponSpeed.gameObject.SetActive(active);
-        weaponDamage.gameObject.SetActive(active);
+        if (active)
+        {
+            currentName.gameObject.SetActive(true);
+            currentSpeed.gameObject.SetActive(true);
+            currentDamage.gameObject.SetActive(true);
+            weaponName.gameObject.SetActive(true);
+            weaponSpeed.gameObject.SetActive(true);
+            weaponDamage.gameObject.SetActive(true);
+        }
+        if (active == false)
+        {
+            currentName.gameObject.SetActive(false);
+            currentSpeed.gameObject.SetActive(false);
+            currentDamage.gameObject.SetActive(false);
+            weaponName.gameObject.SetActive(false);
+            weaponSpeed.gameObject.SetActive(false);
+            weaponDamage.gameObject.SetActive(false);
+        }
+        
         if (i ==1)
         {
             weaponName.text = "Dagger";
