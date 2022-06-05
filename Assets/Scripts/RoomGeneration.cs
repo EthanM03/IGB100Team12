@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RoomGeneration : MonoBehaviour
 {
+    public Text leverText;
+    public Text doorText;
+
     public GameObject ObjectbossDoor;
     public GameObject objectLever1;
     public GameObject objectLever2;
@@ -429,5 +434,11 @@ public class RoomGeneration : MonoBehaviour
 
         ObjectbossDoor.GetComponent<DoorConroller>().Lever_1 = objectLever1;
         ObjectbossDoor.GetComponent<DoorConroller>().Lever_2 = objectLever2;
+        ObjectbossDoor.GetComponent<DoorConroller>().nportalText = doorText;
+        objectLever1.GetComponent<Interactable>().interactText = leverText;
+        objectLever2.GetComponent<Interactable>().interactText = leverText;
+        // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_1 = objectLever1;
+        // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_2 = objectLever2;
+        // ObjectbossDoor.GetComponentInChildren<DoorConroller>().nportalText = doorText;
     }
 }

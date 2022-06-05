@@ -13,10 +13,17 @@ public class DoorConroller : MonoBehaviour
     public bool portal_Active;
     public Text nportalText;
     public bool collisionP = false;
+    public GameObject child;
     // Start is called before the first frame update
     void Start()
     {
        port.SetActive(false);
+       if(child != null)
+       {
+           child.GetComponent<DoorConroller>().Lever_1 = Lever_1;
+           child.GetComponent<DoorConroller>().Lever_2 = Lever_2;
+           child.GetComponent<DoorConroller>().nportalText = nportalText;
+       }
     }
 
     // Update is called once per frame
