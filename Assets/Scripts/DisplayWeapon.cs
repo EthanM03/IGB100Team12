@@ -36,34 +36,42 @@ public class DisplayWeapon : MonoBehaviour
             {
                 if (player.GetComponent<Player>().weapon ==1)
                 {
-                    Instantiate(daggerPrefab, this.transform.position, this.transform.rotation);
+                    GameObject newWeapon = Instantiate(daggerPrefab, this.transform.position, this.transform.rotation);
+                    newWeapon.GetComponent<DisplayWeapon>().interactText = interactText;
                 }
                 else if (player.GetComponent<Player>().weapon ==2)
                 {
-                    Instantiate(swordPrefab, this.transform.position, this.transform.rotation);
+                    GameObject newWeapon = Instantiate(swordPrefab, this.transform.position, this.transform.rotation);
+                    newWeapon.GetComponent<DisplayWeapon>().interactText = interactText;
                 }
                 else if (player.GetComponent<Player>().weapon ==3)
                 {
-                    Instantiate(hammerPrefab, this.transform.position, this.transform.rotation);
+                    GameObject newWeapon = Instantiate(hammerPrefab, this.transform.position, this.transform.rotation);
+                    newWeapon.GetComponent<DisplayWeapon>().interactText = interactText;
                 }
 
                 if(this.gameObject.CompareTag("Hammer"))
                 {
+                    interactText.text = "";
                     Destroy(this.gameObject);
                     player.GetComponent<Player>().weapon = 3;
+                    GameManager.instance.DisplayStats(false,0);
 
                 }
                 if(this.gameObject.CompareTag("Dagger"))
                 {
+                    interactText.text = "";
                     Destroy(this.gameObject);
                     player.GetComponent<Player>().weapon = 1;
+                    GameManager.instance.DisplayStats(false,0);
 
                 }
                 if(this.gameObject.CompareTag("Sword"))
                 {
+                    interactText.text = "";
                     Destroy(this.gameObject);
                     player.GetComponent<Player>().weapon = 2;
-
+                    GameManager.instance.DisplayStats(false,0);
                 }
             }
         }

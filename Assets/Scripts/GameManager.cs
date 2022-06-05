@@ -119,8 +119,9 @@ public class GameManager : MonoBehaviour {
     // }
     public void DisplayStats(bool active, int i)
     {
-        Debug.Log(active);
+        
         int j = player.GetComponent<Player>().weapon;
+        Debug.Log(i.ToString() + " " + j.ToString());
         if (active)
         {
             currentName.gameObject.SetActive(true);
