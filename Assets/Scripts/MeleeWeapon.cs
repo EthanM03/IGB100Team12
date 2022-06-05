@@ -9,11 +9,12 @@ public class MeleeWeapon : MonoBehaviour
     public float hitRate = 0.4f;
     public float hitTime;
     public bool isActive = false;
+    private bool attacking = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        animation = GetComponent<Animation>();
+        animation = gameObject.GetComponent<Animation>();
         isActive = false;
     }
 
@@ -21,31 +22,34 @@ public class MeleeWeapon : MonoBehaviour
     void Update()
     {
         isAttacking();
+        Debug.Log(attacking);
     }
     
     //!! fix this
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" && isAttacking())
+        //Debug.Log(attacking);
+        if (other.tag == "Enemy" && attacking)
         {
+            Debug.Log("hit");
             other.GetComponent<Enemy>().takeDamage(damage);
         }
     }
     
-    private bool isAttacking()
+    private void isAttacking()
     {
         if(Input.GetMouseButton(0) && Time.time > hitTime)
         {
-            Debug.Log("hit");
+            
             animation.Play();
-
-           
+            attacking = true;
 
             hitTime = Time.time + hitRate;
-            return true;
+           
         }
-        else{
-            return false;
+        else if (Time.time<hitTime)
+        {
+            attacking = false;
         }
     }
 

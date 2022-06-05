@@ -50,7 +50,7 @@ public class RoomGeneration : MonoBehaviour
         
         //Add rooms
         SpawnChildRooms(startingRoom, null);
-        if (roomsSpawned < reqIE)
+        if (roomsSpawned <= reqIE)
         {
             SceneManager.LoadScene("MainLevel");
         }
