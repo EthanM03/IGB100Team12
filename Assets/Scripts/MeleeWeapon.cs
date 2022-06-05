@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MeleeWeapon : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class MeleeWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         animation = gameObject.GetComponent<Animation>();
         isActive = false;
+        
     }
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class MeleeWeapon : MonoBehaviour
     }
     
     //!! fix this
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         //Debug.Log(attacking);
         if (other.tag == "Enemy" && attacking)
@@ -53,10 +56,5 @@ public class MeleeWeapon : MonoBehaviour
         }
     }
 
-    public void potentialSwap()
-    {
-        //display info about the weapon
-        
-        //if the player presses E then swap
-    }
+    
 }

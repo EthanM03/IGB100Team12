@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour {
 
         if (health <= 0) {
             Destroy(this.gameObject);
-            GameManager.instance.score +=1;
+            //GameManager.instance.score +=1;
             Instantiate(deathEffect, transform.position, transform.rotation);
         }
     }

@@ -16,17 +16,15 @@ public class GameManager : MonoBehaviour {
    
 
     //UI Elements
-    public Text enemiesRemaning;
-    public Text timeRemaining;
-    public Text scoreText;
-    public Text gameOverText;
-
+    
+    public Text currentName;
+    public Text currentSpeed;
+    public Text currentDamage;
+    public Text weaponName;
+    public Text weaponSpeed;
+    public Text weaponDamage;
     //Game elements
-    public GameObject[] enemies;
-    public int score = 0;
-    public bool gameOver = false;
-    public bool dead = false;
-
+    
 
     // Awake Checks - Singleton setup
     void Awake() {
@@ -45,7 +43,13 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
+        currentName.gameObject.SetActive(false);
+        currentSpeed.gameObject.SetActive(false);
+        currentDamage.gameObject.SetActive(false);
+        weaponName.gameObject.SetActive(false);
+        weaponSpeed.gameObject.SetActive(false);
+        weaponDamage.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -57,15 +61,15 @@ public class GameManager : MonoBehaviour {
         //GameConditions();
 
         //UpdateUI();
-        CheckInput();
+        //CheckInput();
 	}
-    private void CheckInput()
-    {
-        if (Input.GetKey("backspace") && Input.GetKey("left shift"))
-        {
-            SceneManager.LoadScene(0);
-        }
-    }
+    // private void CheckInput()
+    // {
+    //     if (Input.GetKey("backspace") && Input.GetKey("left shift"))
+    //     {
+    //         SceneManager.LoadScene(0);
+    //     }
+    // }
 
     // private void GameConditions()
     // {
@@ -113,4 +117,51 @@ public class GameManager : MonoBehaviour {
     //         gameOverText.text = "You Win!";
     //     }
     // }
+    public void DisplayStats(bool active, int i)
+    {
+        int j = player.GetComponent<Player>().weapon;
+        currentName.gameObject.SetActive(active);
+        currentSpeed.gameObject.SetActive(active);
+        currentDamage.gameObject.SetActive(active);
+        weaponName.gameObject.SetActive(active);
+        weaponSpeed.gameObject.SetActive(active);
+        weaponDamage.gameObject.SetActive(active);
+        if (i ==1)
+        {
+            weaponName.text = "Dagger";
+            weaponSpeed.text = "Speed: Fast";
+            weaponDamage.text = "Damage: 10";
+        }
+        else if (i==2)
+        {
+    
+            weaponName.text = "Sword";
+            weaponSpeed.text = "Speed: Medium";
+            weaponDamage.text = "Damage: 25";
+        }
+        else if (i==3)
+        {
+            weaponName.text = "Hammer";
+            weaponSpeed.text = "Speed: Slow";
+            instance.weaponDamage.text = "Damage: 50";      
+        }
+        if (active&&j==1)
+        {
+            currentName.text = "Dagger";
+            currentSpeed.text = "Speed: Fast";
+            currentDamage.text = "Damage: 10";
+        }
+        else if (active&&j == 2)
+        {
+            currentName.text = "Sword";
+            currentSpeed.text = "Speed: Medium";
+            currentDamage.text = "Damage: 25";
+        }
+        else if (active&&j==3)
+        {
+            currentName.text = "Hammer";
+            currentSpeed.text = "Speed: Slow";
+            currentDamage.text = "Damage: 50";
+        }
+    }
 }

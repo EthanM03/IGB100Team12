@@ -355,6 +355,7 @@ public class RoomGeneration : MonoBehaviour
                 //instantiate
                 GameObject weaponObject = Instantiate(weapon1, IEPos, IERot);
                 AllRooms[i].GetComponent<Room>().IE = weaponObject;
+                weaponObject.GetComponent<DisplayWeapon>().interactText = leverText;
             }
             else if (i == weapon2Location)
             {
@@ -364,6 +365,7 @@ public class RoomGeneration : MonoBehaviour
                 //instantiate
                 GameObject weaponObject = Instantiate(weapon2, IEPos, IERot);
                 AllRooms[i].GetComponent<Room>().IE = weaponObject;
+                weaponObject.GetComponent<DisplayWeapon>().interactText = leverText;
             }
             // else if (i == weapon3Location)
             // {
@@ -438,6 +440,8 @@ public class RoomGeneration : MonoBehaviour
         ObjectbossDoor.GetComponent<DoorConroller>().nportalText = doorText;
         objectLever1.GetComponent<Interactable>().interactText = leverText;
         objectLever2.GetComponent<Interactable>().interactText = leverText;
+
+        
         // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_1 = objectLever1;
         // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_2 = objectLever2;
         // ObjectbossDoor.GetComponentInChildren<DoorConroller>().nportalText = doorText;
