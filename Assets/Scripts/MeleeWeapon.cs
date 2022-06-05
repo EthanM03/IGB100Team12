@@ -36,11 +36,12 @@ public class MeleeWeapon : MonoBehaviour
     {
         if(Input.GetMouseButton(0) && Time.time > hitTime)
         {
+            Debug.Log("hit");
             animation.Play();
 
            
 
-            hitRate = Time.time + hitRate;
+            hitTime = Time.time + hitRate;
             return true;
         }
         else{
