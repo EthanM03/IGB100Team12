@@ -32,7 +32,7 @@ public class RoomGeneration : MonoBehaviour
     public GameObject lever;
     public GameObject weapon1;
     public GameObject weapon2;
-    public GameObject weapon3;
+    //public GameObject weapon3;
 
     //Array of rooms created
     public GameObject[] AllRoomTypes;
@@ -310,10 +310,10 @@ public class RoomGeneration : MonoBehaviour
             weapon2Location = Random.Range(1, roomsSpawned-1);
         }
         int weapon3Location = Random.Range(1, roomsSpawned-1);
-        while (weapon3Location == lever1Location || weapon3Location == bossDoorLocation || weapon3Location == lever2Location || weapon3Location == weapon1Location || weapon3Location == weapon2Location)
-        {
-            weapon3Location = Random.Range(1, roomsSpawned-1);
-        }
+        // while (weapon3Location == lever1Location || weapon3Location == bossDoorLocation || weapon3Location == lever2Location || weapon3Location == weapon1Location || weapon3Location == weapon2Location)
+        // {
+        //     weapon3Location = Random.Range(1, roomsSpawned-1);
+        // }
         for (int i = 1; i < roomsSpawned-1; i++)
         {
             if (i == bossDoorLocation)
@@ -365,15 +365,15 @@ public class RoomGeneration : MonoBehaviour
                 GameObject weaponObject = Instantiate(weapon2, IEPos, IERot);
                 AllRooms[i].GetComponent<Room>().IE = weaponObject;
             }
-            else if (i == weapon3Location)
-            {
+            // else if (i == weapon3Location)
+            // {
                 
-                Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
-                Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
-                //instantiate
-                GameObject weaponObject = Instantiate(weapon3, IEPos, IERot);
-                AllRooms[i].GetComponent<Room>().IE = weaponObject;
-            }
+            //     Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
+            //     Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
+            //     //instantiate
+            //     GameObject weaponObject = Instantiate(weapon3, IEPos, IERot);
+            //     AllRooms[i].GetComponent<Room>().IE = weaponObject;
+            // }
             else
             {
                 //choose whether to spawn anything or not
@@ -388,7 +388,7 @@ public class RoomGeneration : MonoBehaviour
                     GameObject enemyObject = Instantiate(enemy1, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
                     enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
-                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    
                 }
                 else if (result > chanceEnemy1 && result <chanceEnemy1 + chanceEnemy2)
                 {
@@ -400,7 +400,7 @@ public class RoomGeneration : MonoBehaviour
                     GameObject enemyObject = Instantiate(enemy2, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
                     enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
-                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    
                 }
                 else if (result > chanceEnemy1 + chanceEnemy2 && result <chanceEnemy1 + chanceEnemy2 + chanceEnemy3)
                 {
@@ -412,7 +412,7 @@ public class RoomGeneration : MonoBehaviour
                     GameObject enemyObject = Instantiate(enemy3, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
                     enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
-                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    
                 }
                 else if (result > chanceEnemy1 + chanceEnemy2 + chanceEnemy3 && result <chanceEnemy1 + chanceEnemy2 + chanceEnemy3 + chanceHealthBox)
                 {

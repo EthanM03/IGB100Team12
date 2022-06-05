@@ -22,7 +22,7 @@ public class MeleeWeapon : MonoBehaviour
     void Update()
     {
         isAttacking();
-        Debug.Log(attacking);
+        //Debug.Log(attacking);
     }
     
     //!! fix this
