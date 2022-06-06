@@ -15,7 +15,12 @@ public class lookat : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.LookAt(player.transform);
+        if (player)
+        {
+           transform.LookAt(player.transform); 
+        }
+
+        
 
         //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0f, 0f);
     }

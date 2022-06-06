@@ -38,6 +38,11 @@ public class MeleeWeapon : MonoBehaviour
             other.GetComponent<Enemy>().takeDamage(damage);
             attacking = false;
         }
+        if (other.tag == "Boss" && attacking)
+        {
+            other.GetComponent<walk_boss>().TakeDamage(damage);
+            attacking = false;
+        }
     }
     
     private void isAttacking()

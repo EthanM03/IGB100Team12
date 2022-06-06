@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -22,7 +23,15 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         maxHealth = health;
-        weapon = 1;
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            weapon = PlayerPrefs.GetInt("CurrentWeapon");
+        }
+        else
+        {
+          weapon = 1;  
+        }
+        
 	}
 	
 	// Update is called once per frame
@@ -37,8 +46,10 @@ public class Player : MonoBehaviour {
         healthbar.value = (health / maxHealth);
 
         if (health <= 0) {
-            mainCamera.SetActive(true);
-            Destroy(this.gameObject);
+            // mainCamera.SetActive(true);
+            SceneManager.LoadScene("GameOver");
+            // Destroy(this.gameObject);
+            
         }
     }
 

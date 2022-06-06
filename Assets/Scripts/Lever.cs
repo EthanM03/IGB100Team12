@@ -30,7 +30,7 @@ public class Lever : MonoBehaviour
         }
         active = true;
         
-        Debug.Log("active");
+        //Debug.Log("active");
        
     }
 }
