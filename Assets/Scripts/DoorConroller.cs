@@ -8,7 +8,7 @@ public class DoorConroller : MonoBehaviour
 {
     public GameObject Lever_1;
     public GameObject Lever_2;
-    public bool port_VFX;
+    public bool port_SFX;
     public GameObject port;
     public bool portal_Active;
     public Text nportalText;
@@ -32,6 +32,7 @@ public class DoorConroller : MonoBehaviour
         if (Lever_1.GetComponent<Lever>().active == true && Lever_2.GetComponent<Lever>().active == true)
         {
             port.SetActive(true);
+            port_SFX = true;
         }
 
         if (collisionP && (!Lever_1.GetComponent<Lever>().active || !Lever_2.GetComponent<Lever>().active))

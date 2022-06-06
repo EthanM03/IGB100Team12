@@ -15,36 +15,18 @@ public class Audio_Manager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this; 
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject); 
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        audioClip[0] = Resources.Load<AudioClip>("Portal_loop");
-        audioClip[1] = Resources.Load<AudioClip>("Main_Game");
+        //scene_Start_Sounds();
 
-        portal = GameObject.Find("PortalCollider");
-        FPS = GameObject.Find("FPSController");
-    
-        audioSource[0] = portal.GetComponent<AudioSource>();
-        audioSource[1] = FPS.GetComponent<AudioSource>();
-
-        audioSource[0].clip = audioClip[0];
-        audioSource[1].clip = audioClip[1];
-        
-        audioSource[1].PlayOneShot(audioSource[1].clip); 
+        Invoke("scene_Start_Sounds", 1f);
     }
 
+    
     // Update is called once per frame
     void Update()
     {
@@ -58,11 +40,28 @@ public class Audio_Manager : MonoBehaviour
 
     void play_Portal()
     {
-        if (portal.GetComponent<DoorConroller>().port_VFX == true)
+        if (portal.GetComponent<DoorConroller>().port_SFX == true)
         {
             audioSource[0].PlayOneShot(audioSource[0].clip);
             Debug.Log("sounds");
         }
+    }
+
+    public void scene_Start_Sounds()
+    {
+        audioClip[0] = Resources.Load<AudioClip>("Portal_loop");
+        audioClip[1] = Resources.Load<AudioClip>("Main_Game");
+
+        
+        FPS = GameObject.Find("FPSController");
+
+        audioSource[0] = portal.GetComponent<AudioSource>();
+        audioSource[1] = FPS.GetComponent<AudioSource>();
+
+        audioSource[0].clip = audioClip[0];
+        audioSource[1].clip = audioClip[1];
+
+        audioSource[1].PlayOneShot(audioSource[1].clip);
     }
    
 }

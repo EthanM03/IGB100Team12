@@ -14,6 +14,8 @@ public class RoomGeneration : MonoBehaviour
     public GameObject ObjectbossDoor;
     public GameObject objectLever1;
     public GameObject objectLever2;
+    public GameObject audio_manager;
+    
 
     //Room prefabs
     public GameObject deadEnd;
@@ -43,6 +45,8 @@ public class RoomGeneration : MonoBehaviour
     public int maxPath = 5;
     public GameObject startingRoom;
 
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -55,15 +59,19 @@ public class RoomGeneration : MonoBehaviour
             SceneManager.LoadScene("MainLevel");
         }
         //build the nav mesh here
-        
+
+               
         SpawnIE();
 
         
+        
 
-    }
 
-    // Update is called once per frame
-    void Update()
+
+}
+
+// Update is called once per frame
+void Update()
     {
         
     }
@@ -435,11 +443,18 @@ public class RoomGeneration : MonoBehaviour
             }
         }
 
+        audio_manager = GameObject.Find("AudioManager");
+        
+
         ObjectbossDoor.GetComponent<DoorConroller>().Lever_1 = objectLever1;
         ObjectbossDoor.GetComponent<DoorConroller>().Lever_2 = objectLever2;
         ObjectbossDoor.GetComponent<DoorConroller>().nportalText = doorText;
         objectLever1.GetComponent<Interactable>().interactText = leverText;
         objectLever2.GetComponent<Interactable>().interactText = leverText;
+
+        audio_manager.GetComponent<Audio_Manager>().portal = bossDoor;
+        //audio_manager.GetComponent<Audio_Manager>().audioSource[0] = portal_Collider.GetComponent<AudioSource>(); 
+
 
         
         // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_1 = objectLever1;
