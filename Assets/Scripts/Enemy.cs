@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
-        //targetingPlayer = false;
+        targetingPlayer = false;
         
         //player reference exception catch
         try
@@ -66,8 +66,8 @@ public class Enemy : MonoBehaviour {
 
         if (health <= 0) {
             Destroy(this.gameObject);
-            GameManager.instance.score +=1;
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            //GameManager.instance.score +=1;
+            //Instantiate(deathEffect, transform.position, transform.rotation);
         }
     }
 

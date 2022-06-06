@@ -7,24 +7,28 @@ public class Player : MonoBehaviour {
 
     public float health = 100;
     private float maxHealth;
-    public GameObject weapon;
+    public float healthRestore = 10;
 
     public GameObject mainCamera;
     public float reach = 20.0f;
 
     //UI Elements
     public Slider healthbar;
+    public int weapon;
+    public GameObject sword;
+    public GameObject dagger;
+    public GameObject hammer;
 
 	// Use this for initialization
 	void Start () {
         maxHealth = health;
-        weapon = null;
+        weapon = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-
+        CheckWeapon();
 	}
 
     public void takeDamage(float dmg) {
@@ -38,22 +42,46 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void interact()
+    
+    void OnTriggerEnter(Collider other)
     {
-        //find what the player is looking at
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, reach))
+        if (other.tag == "Health")
         {
-            if(hit.transform.tag == "Weapon")
+            if (health < (100-healthRestore))
             {
-                hit.transform.GetComponent<MeleeWeapon>().potentialSwap();
+                health += healthRestore;
+                Destroy(other.gameObject);
             }
-            if (hit.transform.tag == "Lever")
+            else if (health < 100)
             {
-                //lever stuff here
+                health = 100;
+                Destroy(other.gameObject);
             }
+            
+            healthbar.value = (health / maxHealth);
         }
     }
 
+    public void CheckWeapon()
+    {
+        if (weapon ==1)
+        {
+            dagger.SetActive(true);
+            sword.SetActive(false);
+            hammer.SetActive(false);
+        }
+        if (weapon ==2)
+        {
+            dagger.SetActive(false);
+            sword.SetActive(true);
+            hammer.SetActive(false);
+        }
+        if (weapon ==3)
+        {
+            dagger.SetActive(false);
+            sword.SetActive(false);
+            hammer.SetActive(true);
+        }
+    }
 
 }

@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RoomGeneration : MonoBehaviour
 {
+    public Text leverText;
+    public Text doorText;
+
+    public GameObject ObjectbossDoor;
+    public GameObject objectLever1;
+    public GameObject objectLever2;
+
     //Room prefabs
     public GameObject deadEnd;
     public int reqIE = 6;
@@ -23,7 +32,7 @@ public class RoomGeneration : MonoBehaviour
     public GameObject lever;
     public GameObject weapon1;
     public GameObject weapon2;
-    public GameObject weapon3;
+    //public GameObject weapon3;
 
     //Array of rooms created
     public GameObject[] AllRoomTypes;
@@ -41,7 +50,7 @@ public class RoomGeneration : MonoBehaviour
         
         //Add rooms
         SpawnChildRooms(startingRoom, null);
-        if (roomsSpawned < reqIE)
+        if (roomsSpawned <= reqIE)
         {
             SceneManager.LoadScene("MainLevel");
         }
@@ -49,6 +58,7 @@ public class RoomGeneration : MonoBehaviour
         
         SpawnIE();
 
+        
 
     }
 
@@ -277,6 +287,9 @@ public class RoomGeneration : MonoBehaviour
         GameObject[] temp = new GameObject[roomsSpawned-reqIE];
         int bossDoorLocation = Random.Range(1, roomsSpawned-1);
         int lever1Location = Random.Range(1, roomsSpawned-1);
+        // GameObject ObjectbossDoor;
+        // GameObject objectLever1;
+        // GameObject objectLever2;
         while (lever1Location == bossDoorLocation)
         {
             lever1Location = Random.Range(1, roomsSpawned-1);
@@ -297,10 +310,10 @@ public class RoomGeneration : MonoBehaviour
             weapon2Location = Random.Range(1, roomsSpawned-1);
         }
         int weapon3Location = Random.Range(1, roomsSpawned-1);
-        while (weapon3Location == lever1Location || weapon3Location == bossDoorLocation || weapon3Location == lever2Location || weapon3Location == weapon1Location || weapon3Location == weapon2Location)
-        {
-            weapon3Location = Random.Range(1, roomsSpawned-1);
-        }
+        // while (weapon3Location == lever1Location || weapon3Location == bossDoorLocation || weapon3Location == lever2Location || weapon3Location == weapon1Location || weapon3Location == weapon2Location)
+        // {
+        //     weapon3Location = Random.Range(1, roomsSpawned-1);
+        // }
         for (int i = 1; i < roomsSpawned-1; i++)
         {
             if (i == bossDoorLocation)
@@ -309,7 +322,7 @@ public class RoomGeneration : MonoBehaviour
                 Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
                 Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
                 //instantiate
-                GameObject ObjectbossDoor = Instantiate(bossDoor, IEPos, IERot);
+                ObjectbossDoor = Instantiate(bossDoor, IEPos, IERot);
                 AllRooms[i].GetComponent<Room>().IE = ObjectbossDoor;
             }
             else if (i == lever1Location)
@@ -318,8 +331,9 @@ public class RoomGeneration : MonoBehaviour
                 Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
                 Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
                 //instantiate
-                GameObject objectLever1 = Instantiate(lever, IEPos, IERot);
-                //!! ypdate the bossdoors lever object AllRooms[i].GetComponent<Room>.GetComponent<BossDoor>().lever1 = objectLever1;
+                objectLever1 = Instantiate(lever, IEPos, IERot);
+                //!! ypdate the bossdoors lever object 
+                //ObjectbossDoor.GetComponent<DoorConroller>().Lever_1 = objectLever1;
                 AllRooms[i].GetComponent<Room>().IE = objectLever1;
             }
             else if (i == lever2Location)
@@ -328,8 +342,9 @@ public class RoomGeneration : MonoBehaviour
                 Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
                 Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
                 //instantiate
-                GameObject objectLever2 = Instantiate(lever, IEPos, IERot);
-                //!! ypdate the bossdoors lever object ObjectbossDoor.GetComponent<BossDoor>().lever2 = objectLever2;
+                objectLever2 = Instantiate(lever, IEPos, IERot);
+                //!! ypdate the bossdoors lever object 
+                //ObjectbossDoor.GetComponent<DoorConroller>().Lever_2 = objectLever2;
                 AllRooms[i].GetComponent<Room>().IE = objectLever2;
             }
             else if (i == weapon1Location)
@@ -340,6 +355,7 @@ public class RoomGeneration : MonoBehaviour
                 //instantiate
                 GameObject weaponObject = Instantiate(weapon1, IEPos, IERot);
                 AllRooms[i].GetComponent<Room>().IE = weaponObject;
+                weaponObject.GetComponent<DisplayWeapon>().interactText = leverText;
             }
             else if (i == weapon2Location)
             {
@@ -349,16 +365,17 @@ public class RoomGeneration : MonoBehaviour
                 //instantiate
                 GameObject weaponObject = Instantiate(weapon2, IEPos, IERot);
                 AllRooms[i].GetComponent<Room>().IE = weaponObject;
+                weaponObject.GetComponent<DisplayWeapon>().interactText = leverText;
             }
-            else if (i == weapon3Location)
-            {
+            // else if (i == weapon3Location)
+            // {
                 
-                Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
-                Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
-                //instantiate
-                GameObject weaponObject = Instantiate(weapon3, IEPos, IERot);
-                AllRooms[i].GetComponent<Room>().IE = weaponObject;
-            }
+            //     Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
+            //     Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
+            //     //instantiate
+            //     GameObject weaponObject = Instantiate(weapon3, IEPos, IERot);
+            //     AllRooms[i].GetComponent<Room>().IE = weaponObject;
+            // }
             else
             {
                 //choose whether to spawn anything or not
@@ -373,7 +390,7 @@ public class RoomGeneration : MonoBehaviour
                     GameObject enemyObject = Instantiate(enemy1, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
                     enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
-                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    
                 }
                 else if (result > chanceEnemy1 && result <chanceEnemy1 + chanceEnemy2)
                 {
@@ -385,7 +402,7 @@ public class RoomGeneration : MonoBehaviour
                     GameObject enemyObject = Instantiate(enemy2, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
                     enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
-                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    
                 }
                 else if (result > chanceEnemy1 + chanceEnemy2 && result <chanceEnemy1 + chanceEnemy2 + chanceEnemy3)
                 {
@@ -397,7 +414,7 @@ public class RoomGeneration : MonoBehaviour
                     GameObject enemyObject = Instantiate(enemy3, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = enemyObject;
                     enemyObject.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
-                    //AllRooms[i].GetComponent<Room>().IE.GetComponent<Enemy>().Spawnertarget = AllRooms[i].GetComponent<Room>().IESpawner;
+                    
                 }
                 else if (result > chanceEnemy1 + chanceEnemy2 + chanceEnemy3 && result <chanceEnemy1 + chanceEnemy2 + chanceEnemy3 + chanceHealthBox)
                 {
@@ -406,6 +423,7 @@ public class RoomGeneration : MonoBehaviour
                     Vector3 IEPos = AllRooms[i].GetComponent<Room>().IESpawner.transform.position;
                     Quaternion IERot = AllRooms[i].GetComponent<Room>().IESpawner.transform.rotation;
                     //instantiate
+                    IEPos += new Vector3 (0,1,0);
                     GameObject healthBoxObject = Instantiate(healthBox, IEPos, IERot);
                     AllRooms[i].GetComponent<Room>().IE = healthBoxObject;
                 }
@@ -416,5 +434,16 @@ public class RoomGeneration : MonoBehaviour
                 }
             }
         }
+
+        ObjectbossDoor.GetComponent<DoorConroller>().Lever_1 = objectLever1;
+        ObjectbossDoor.GetComponent<DoorConroller>().Lever_2 = objectLever2;
+        ObjectbossDoor.GetComponent<DoorConroller>().nportalText = doorText;
+        objectLever1.GetComponent<Interactable>().interactText = leverText;
+        objectLever2.GetComponent<Interactable>().interactText = leverText;
+
+        
+        // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_1 = objectLever1;
+        // ObjectbossDoor.GetComponentInChildren<DoorConroller>().Lever_2 = objectLever2;
+        // ObjectbossDoor.GetComponentInChildren<DoorConroller>().nportalText = doorText;
     }
 }
