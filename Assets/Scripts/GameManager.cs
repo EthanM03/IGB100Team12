@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour {
     //Singleton Setup
     public static GameManager instance = null;
 
-    public float time;
-    public float maxTime = 15;
-
+    // public float time;
+    // public float maxTime = 15;
+    public GameObject gameOverPannel;
+    public bool gameOver;
+    public bool dead;
     public GameObject player;
    
 
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        gameOverPannel.SetActive(false);
+        dead = false;
+        gameOver = false;
         player = GameObject.FindGameObjectWithTag("Player");
         currentName.gameObject.SetActive(false);
         currentSpeed.gameObject.SetActive(false);
@@ -58,9 +63,9 @@ public class GameManager : MonoBehaviour {
 
         //enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        //GameConditions();
+        GameConditions();
 
-        //UpdateUI();
+        UpdateUI();
         //CheckInput();
 	}
     // private void CheckInput()
@@ -71,52 +76,52 @@ public class GameManager : MonoBehaviour {
     //     }
     // }
 
-    // private void GameConditions()
-    // {
-    //     if (!player)
-    //     {
-    //         gameOver = true;
-    //         dead = true;
-    //     }
-    //     else if (time > maxTime && enemies.Length==0)
-    //     {
-    //         gameOver = true;
-    //     }
+    private void GameConditions()
+    {
+        if (!player)
+        {
+            gameOver = true;
+            dead = true;
+        }
+        // else if (time > maxTime && enemies.Length==0)
+        // {
+        //     gameOver = true;
+        // }
 
-    //     //Update scores
-    //     if (gameOver)
-    //     {
-    //         if(score > PlayerPrefs.GetInt("HighScore", 0))
-    //         {
-    //             PlayerPrefs.SetInt("HighScore", score);
-    //         }
-    //     }
-    // }
+        //Update scores
+        // if (gameOver)
+        // {
+        //     if(score > PlayerPrefs.GetInt("HighScore", 0))
+        //     {
+        //         PlayerPrefs.SetInt("HighScore", score);
+        //     }
+        // }
+    }
 
-    // private void UpdateUI()
-    // {
-    //     //Enemies
-    //     enemiesRemaning.text = "Enemies Remaining: " + enemies.Length;
+    private void UpdateUI()
+    {
+        // //Enemies
+        // enemiesRemaning.text = "Enemies Remaining: " + enemies.Length;
 
-    //     //time 
-    //     if (time < maxTime)
-    //     {
-    //        timeRemaining.text = "Time Remaining: " + (int)(maxTime-time); 
-    //     }
+        //time 
+        // if (time < maxTime)
+        // {
+        //    timeRemaining.text = "Time Remaining: " + (int)(maxTime-time); 
+        // }
         
-    //     //score
-    //     scoreText.text = "Score: " + score;
+        // //score
+        // scoreText.text = "Score: " + score;
 
-    //     //endgame text
-    //     if (gameOver && dead)
-    //     {
-    //         gameOverText.text = "You are dead";
-    //     }
-    //     else if (gameOver)
-    //     {
-    //         gameOverText.text = "You Win!";
-    //     }
-    // }
+        //endgame text
+        if (gameOver && dead)
+        {
+            gameOverPannel.SetActive(true);
+        }
+        else if (gameOver)
+        {
+            gameOverPannel.SetActive(true);
+        }
+    }
     public void DisplayStats(bool active, int i)
     {
         

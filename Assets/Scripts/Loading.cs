@@ -12,7 +12,9 @@ public class Loading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        loadingOperation = SceneManager.LoadSceneAsync(2);
+        //DontDestoryOnLoad(this);
+        //Object.DontDestoryOnLoad(progressBar);
+        loadingOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
@@ -26,6 +28,11 @@ public class Loading : MonoBehaviour
         {
             progressBar.value = Mathf.Clamp01(loadingOperation.progress/0.9f);
         }
+        else
+        {
+            Destroy(progressBar);
+        }
         
     }
+    
 }

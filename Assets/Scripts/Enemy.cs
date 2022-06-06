@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
-        //targetingPlayer = false;
+        targetingPlayer = false;
         
         //player reference exception catch
         try
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        //Movement();
+        Movement();
         
 	}
 
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour {
         if (health <= 0) {
             Destroy(this.gameObject);
             //GameManager.instance.score +=1;
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            //Instantiate(deathEffect, transform.position, transform.rotation);
         }
     }
 
