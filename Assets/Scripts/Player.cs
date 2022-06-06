@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         maxHealth = health;
-        if (SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             weapon = PlayerPrefs.GetInt("CurrentWeapon");
         }
