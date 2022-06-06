@@ -11,8 +11,9 @@ public class Loading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        loadingOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        loadingOperation = SceneManager.LoadSceneAsync("MainLevel", LoadSceneMode.Single);
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

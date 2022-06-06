@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     {
         //highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame

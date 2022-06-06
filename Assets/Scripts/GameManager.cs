@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             PlayerPrefs.SetInt("CurrentWeapon", 1);
         }
