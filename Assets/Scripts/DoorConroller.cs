@@ -13,10 +13,24 @@ public class DoorConroller : MonoBehaviour
     public bool portal_Active;
     public Text nportalText;
     public bool collisionP = false;
+
+    //Sounds related
+   /* public AudioSource[] audioSource = new AudioSource[1];
+    public AudioClip[] audioClip = new AudioClip[1];
+    public GameObject portal;*/
     // Start is called before the first frame update
     void Start()
     {
        port.SetActive(false);
+
+        //sound related
+       /* audioClip[0] = Resources.Load<AudioClip>("Portal_loop");
+
+        portal = GameObject.Find("PortalCollider");
+        audioSource[0] = portal.GetComponent<AudioSource>();
+
+        audioSource[0].clip = audioClip[0];
+        */
     }
 
     // Update is called once per frame
@@ -25,6 +39,7 @@ public class DoorConroller : MonoBehaviour
         if (Lever_1.GetComponent<Lever>().active == true && Lever_2.GetComponent<Lever>().active == true)
         {
             port.SetActive(true);
+            port_VFX = true;            
         }
 
         if (collisionP && (!Lever_1.GetComponent<Lever>().active || !Lever_2.GetComponent<Lever>().active))
@@ -41,6 +56,11 @@ public class DoorConroller : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
+       /* if (port_VFX == true)
+        {
+            audioSource[0].Play();
+        }*/
+
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -54,14 +74,7 @@ public class DoorConroller : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            
-            Debug.Log("stay");
-        }
-    }
+  
 
     private void OnTriggerExit(Collider collision)
     {
