@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            PlayerPrefs.SetInt("CurrentWeapon", 1);
+        }
+        
         gameOverPannel.SetActive(false);
         dead = false;
         gameOver = false;
@@ -62,19 +67,14 @@ public class GameManager : MonoBehaviour {
         //time += Time.deltaTime;
 
         //enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        PlayerPrefs.SetInt("CurrentWeapon", player.GetComponent<Player>().weapon) ;
+        // Debug.Log(PlayerPrefs.GetInt("CurrentWeapon"));
 
         GameConditions();
 
         UpdateUI();
         //CheckInput();
 	}
-    // private void CheckInput()
-    // {
-    //     if (Input.GetKey("backspace") && Input.GetKey("left shift"))
-    //     {
-    //         SceneManager.LoadScene(0);
-    //     }
-    // }
 
     private void GameConditions()
     {
@@ -83,50 +83,25 @@ public class GameManager : MonoBehaviour {
             gameOver = true;
             dead = true;
         }
-        // else if (time > maxTime && enemies.Length==0)
-        // {
-        //     gameOver = true;
-        // }
-
-        //Update scores
-        // if (gameOver)
-        // {
-        //     if(score > PlayerPrefs.GetInt("HighScore", 0))
-        //     {
-        //         PlayerPrefs.SetInt("HighScore", score);
-        //     }
-        // }
     }
 
     private void UpdateUI()
     {
-        // //Enemies
-        // enemiesRemaning.text = "Enemies Remaining: " + enemies.Length;
-
-        //time 
-        // if (time < maxTime)
-        // {
-        //    timeRemaining.text = "Time Remaining: " + (int)(maxTime-time); 
-        // }
-        
-        // //score
-        // scoreText.text = "Score: " + score;
-
         //endgame text
         if (gameOver && dead)
         {
-            gameOverPannel.SetActive(true);
+            //gameOverPannel.SetActive(true);
         }
         else if (gameOver)
         {
-            gameOverPannel.SetActive(true);
+            //gameOverPannel.SetActive(true);
         }
     }
     public void DisplayStats(bool active, int i)
     {
         
         int j = player.GetComponent<Player>().weapon;
-        Debug.Log(i.ToString() + " " + j.ToString());
+        // Debug.Log(i.ToString() + " " + j.ToString());
         if (active)
         {
             currentName.gameObject.SetActive(true);
@@ -183,5 +158,9 @@ public class GameManager : MonoBehaviour {
             currentSpeed.text = "Speed: Slow";
             currentDamage.text = "Damage: 50";
         }
+    }
+    public void Win()
+    {
+        gameOver = true;
     }
 }

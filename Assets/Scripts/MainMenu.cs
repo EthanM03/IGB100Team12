@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         //highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
