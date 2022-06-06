@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour {
     {
         
         int j = player.GetComponent<Player>().weapon;
-        Debug.Log(i.ToString() + " " + j.ToString());
+        // Debug.Log(i.ToString() + " " + j.ToString());
         if (active)
         {
             currentName.gameObject.SetActive(true);

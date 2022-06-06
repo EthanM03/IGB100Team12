@@ -14,7 +14,7 @@ public class Loading : MonoBehaviour
     {
         //DontDestoryOnLoad(this);
         //Object.DontDestoryOnLoad(progressBar);
-        loadingOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        loadingOperation = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
     }
 
     // Update is called once per frame
@@ -26,11 +26,12 @@ public class Loading : MonoBehaviour
     {
         if (loadingOperation.isDone != true)
         {
+            Debug.Log(loadingOperation.progress);
             progressBar.value = Mathf.Clamp01(loadingOperation.progress/0.9f);
         }
         else
         {
-            Destroy(progressBar);
+            SceneManager.UnloadSceneAsync(4, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         }
         
     }

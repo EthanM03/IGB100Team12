@@ -56,7 +56,7 @@ public class DoorConroller : MonoBehaviour
         {
             portal_Active = true;
             collisionP = true;
-            Debug.Log("collision");
+            // Debug.Log("collision");
 
         }
     }
@@ -66,7 +66,7 @@ public class DoorConroller : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             
-            Debug.Log("stay");
+            // Debug.Log("stay");
         }
     }
 
@@ -76,7 +76,7 @@ public class DoorConroller : MonoBehaviour
         {
             portal_Active = false;
             collisionP = false;
-            Debug.Log("un-collision");
+            // Debug.Log("un-collision");
         }
     }
 }

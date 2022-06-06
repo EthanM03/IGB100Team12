@@ -13,10 +13,10 @@ public class Anim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            animator.SetTrigger("attack");
-            
-        }
+        
+    }
+    public void PlayAnim()
+    {
+        animator.SetTrigger("attack");
     }
 }
