@@ -66,7 +66,7 @@ public class walk_boss : MonoBehaviour
         healthbar.value = health/500.0f;
         if (health <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("Win");
             // Destroy(this.gameObject);
 
         }
