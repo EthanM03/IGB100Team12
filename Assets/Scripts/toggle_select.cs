@@ -24,9 +24,5 @@ public class toggle_select : MonoBehaviour
         
     }
 
-    public void select_Toggle(int id)
-    {
-
-    }
-    
+       
 }
