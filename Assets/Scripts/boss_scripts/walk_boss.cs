@@ -28,6 +28,12 @@ public class walk_boss : MonoBehaviour
     public float spawnRate = 2.0f;
     private float spawnTimer;
     public Slider healthbar;
+
+    //sound related
+    public AudioSource[] audioSource = new AudioSource[1];
+    public AudioClip[] audioClip = new AudioClip[1];
+    
+
     // Start is called before the first frame update
 
     private void SpawnEnemy()
@@ -48,6 +54,15 @@ public class walk_boss : MonoBehaviour
 
         //firerate = 1f;
         //firetime = Time.time;
+
+        //sound related
+        audioClip[0] = Resources.Load<AudioClip>("boss_Sounds");
+
+        audioSource[0] = gameObject.GetComponent<AudioSource>();
+        
+
+        audioSource[0].clip = audioClip[0];
+        audioSource[0].PlayOneShot(audioSource[0].clip);
     }
 
 

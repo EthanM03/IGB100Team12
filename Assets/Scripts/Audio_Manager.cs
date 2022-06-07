@@ -30,7 +30,7 @@ public class Audio_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        play_Portal();
+        Invoke("play_Portal", 1f);
     }
 
     
@@ -53,14 +53,14 @@ public class Audio_Manager : MonoBehaviour
         audioClip[0] = Resources.Load<AudioClip>("Portal_loop");
         audioClip[1] = Resources.Load<AudioClip>("Main_Game");
 
-        
         FPS = GameObject.Find("FirstPersonCharacter");
 
         audioSource[0] = portal.GetComponent<AudioSource>();
-        audioSource[1] = FPS.GetComponent<AudioSource>();
+        audioSource[1] = FPS.GetComponent<AudioSource>();        
 
         audioSource[0].clip = audioClip[0];
         audioSource[1].clip = audioClip[1];
+        
 
         audioSource[1].PlayOneShot(audioSource[1].clip);
     }

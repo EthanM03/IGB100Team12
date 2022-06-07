@@ -19,8 +19,8 @@ public class Enemy : MonoBehaviour {
     public float damageRate = 0.75f;
 
     //sound related
-    public AudioSource[] audioSource = new AudioSource[1];
-    public AudioClip[] audioClip = new AudioClip[1];
+    public AudioSource[] audioSource = new AudioSource[2];
+    public AudioClip[] audioClip = new AudioClip[2];
 
     //Effects
     public GameObject deathEffect;
@@ -37,17 +37,24 @@ public class Enemy : MonoBehaviour {
             Playertarget = GameObject.FindGameObjectWithTag("Player");
         }
         catch 
-        {
-            
+        {            
             Playertarget = null;
         }
 
         //sound related
         audioClip[0] = Resources.Load<AudioClip>("Enemy_norm");
+        audioClip[1] = Resources.Load<AudioClip>("enemy_Damage");
 
         audioSource[0] = this.GetComponent<AudioSource>();
 
+        audioSource[1] = gameObject.AddComponent<AudioSource>();
+        audioSource[1].volume = 0.1f;
+        audioSource[1].spatialBlend = 1;
+
         audioSource[0].clip = audioClip[0];
+        audioSource[1].clip = audioClip[1];
+
+        audioSource[0].PlayOneShot(audioSource[0].clip);
     }
 	
 	// Update is called once per frame
@@ -74,6 +81,12 @@ public class Enemy : MonoBehaviour {
     //Public method for taking damage and dying
     public void takeDamage(float dmg) {
         health -= dmg;
+
+        if (!audioSource[1].isPlaying)
+        {
+            audioSource[1].Play();
+        }
+        
 
         if (health <= 0) {
             Destroy(this.gameObject);
