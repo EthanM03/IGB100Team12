@@ -20,8 +20,12 @@ public class Player : MonoBehaviour {
     public GameObject dagger;
     public GameObject hammer;
 
-	// Use this for initialization
-	void Start () {
+    //sound related
+    public AudioSource[] audioSource = new AudioSource[1];
+    public AudioClip[] audioClip = new AudioClip[1];
+
+    // Use this for initialization
+    void Start () {
         maxHealth = health;
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
@@ -31,8 +35,15 @@ public class Player : MonoBehaviour {
         {
           weapon = 1;  
         }
-        
-	}
+
+        audioClip[0] = Resources.Load<AudioClip>("player_Damage");
+
+        audioSource[0] = gameObject.AddComponent<AudioSource>();
+        audioSource[0].volume = 0.5f;
+        audioSource[0].spatialBlend = 1;
+
+        audioSource[0].clip = audioClip[0];
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -44,6 +55,11 @@ public class Player : MonoBehaviour {
         health -= dmg;
 
         healthbar.value = (health / maxHealth);
+
+        if (!audioSource[0].isPlaying)
+        {
+            audioSource[0].Play();
+        }
 
         if (health <= 0) {
             // mainCamera.SetActive(true);

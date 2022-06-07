@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -42,6 +44,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public Text helpText;
+
         // Use this for initialization
         private void Start()
         {
@@ -55,6 +59,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            ui_Display();
+            Invoke("ui_Hide", 3f);
         }
 
 
@@ -254,6 +261,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        private void ui_Display()
+        {
+            if (SceneManager.GetActiveScene().name == "Tutoiral")
+            {
+                helpText = GameObject.Find("help_text").GetComponent<Text>();
+                helpText.text = "Escape the room";
+            }
+
+            else if (SceneManager.GetActiveScene().name == "MainLevel")
+            {
+                helpText = GameObject.Find("help_text").GetComponent<Text>();
+                helpText.text = "Escape the maze";
+            }
+
+            if (SceneManager.GetActiveScene().name == "boss_level")
+            {
+                helpText = GameObject.Find("help_text").GetComponent<Text>();
+                helpText.text = "End this nightmare!";
+            }
+        }
+
+        private void ui_Hide()
+        {
+            helpText.text = "";
         }
     }
 }
