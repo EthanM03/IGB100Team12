@@ -452,7 +452,7 @@ void Update()
         objectLever1.GetComponent<Interactable>().interactText = leverText;
         objectLever2.GetComponent<Interactable>().interactText = leverText;
 
-        audio_manager.GetComponent<Audio_Manager>().portal = bossDoor;
+        audio_manager.GetComponent<Audio_Manager>().portal = ObjectbossDoor;
         //audio_manager.GetComponent<Audio_Manager>().audioSource[0] = portal_Collider.GetComponent<AudioSource>(); 
 
 

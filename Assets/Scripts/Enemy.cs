@@ -18,6 +18,10 @@ public class Enemy : MonoBehaviour {
     private float damageTime;
     public float damageRate = 0.75f;
 
+    //sound related
+    public AudioSource[] audioSource = new AudioSource[1];
+    public AudioClip[] audioClip = new AudioClip[1];
+
     //Effects
     public GameObject deathEffect;
 
@@ -37,6 +41,13 @@ public class Enemy : MonoBehaviour {
             
             Playertarget = null;
         }
+
+        //sound related
+        audioClip[0] = Resources.Load<AudioClip>("Enemy_norm");
+
+        audioSource[0] = this.GetComponent<AudioSource>();
+
+        audioSource[0].clip = audioClip[0];
     }
 	
 	// Update is called once per frame

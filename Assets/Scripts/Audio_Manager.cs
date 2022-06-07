@@ -10,7 +10,7 @@ public class Audio_Manager : MonoBehaviour
     public GameObject portal;
     public GameObject FPS;
 
-    public static Audio_Manager instance; 
+    //spublic static Audio_Manager instance; 
 
 
     private void Awake()
@@ -30,13 +30,10 @@ public class Audio_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void FixedUpdate()
-    {
         play_Portal();
     }
+
+    
 
     void play_Portal()
     {
@@ -44,6 +41,10 @@ public class Audio_Manager : MonoBehaviour
         {
             audioSource[0].PlayOneShot(audioSource[0].clip);
             Debug.Log("sounds");
+        }
+        else
+        {
+            audioSource[0].Stop();
         }
     }
 
@@ -53,7 +54,7 @@ public class Audio_Manager : MonoBehaviour
         audioClip[1] = Resources.Load<AudioClip>("Main_Game");
 
         
-        FPS = GameObject.Find("FPSController");
+        FPS = GameObject.Find("FirstPersonCharacter");
 
         audioSource[0] = portal.GetComponent<AudioSource>();
         audioSource[1] = FPS.GetComponent<AudioSource>();
