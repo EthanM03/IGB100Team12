@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour {
         audioSource[0] = this.GetComponent<AudioSource>();
 
         audioSource[1] = gameObject.AddComponent<AudioSource>();
-        audioSource[1].volume = 0.1f;
+        audioSource[1].volume = 0.2f;
         audioSource[1].spatialBlend = 1;
 
         audioSource[0].clip = audioClip[0];

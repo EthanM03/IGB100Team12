@@ -56,7 +56,8 @@ public class Audio_Manager : MonoBehaviour
         FPS = GameObject.Find("FirstPersonCharacter");
 
         audioSource[0] = portal.GetComponent<AudioSource>();
-        audioSource[1] = FPS.GetComponent<AudioSource>();        
+        audioSource[1] = FPS.GetComponent<AudioSource>();   
+        
 
         audioSource[0].clip = audioClip[0];
         audioSource[1].clip = audioClip[1];

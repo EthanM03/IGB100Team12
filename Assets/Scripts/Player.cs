@@ -21,8 +21,8 @@ public class Player : MonoBehaviour {
     public GameObject hammer;
 
     //sound related
-    public AudioSource[] audioSource = new AudioSource[1];
-    public AudioClip[] audioClip = new AudioClip[1];
+    public AudioSource[] audioSource = new AudioSource[2];
+    public AudioClip[] audioClip = new AudioClip[2];
 
     // Use this for initialization
     void Start () {
@@ -37,12 +37,18 @@ public class Player : MonoBehaviour {
         }
 
         audioClip[0] = Resources.Load<AudioClip>("player_Damage");
+        audioClip[1] = Resources.Load<AudioClip>("heal_sounds");
 
         audioSource[0] = gameObject.AddComponent<AudioSource>();
         audioSource[0].volume = 0.5f;
         audioSource[0].spatialBlend = 1;
 
+        audioSource[1] = gameObject.AddComponent<AudioSource>();
+        audioSource[1].volume = 0.8f;
+        audioSource[1].spatialBlend = 1;
+
         audioSource[0].clip = audioClip[0];
+        audioSource[1].clip = audioClip[1];
     }
 	
 	// Update is called once per frame
@@ -78,6 +84,7 @@ public class Player : MonoBehaviour {
             {
                 health += healthRestore;
                 Destroy(other.gameObject);
+                
             }
             else if (health < 100)
             {
@@ -86,6 +93,7 @@ public class Player : MonoBehaviour {
             }
             
             healthbar.value = (health / maxHealth);
+            audioSource[1].Play();
         }
     }
 
