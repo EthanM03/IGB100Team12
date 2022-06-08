@@ -2,27 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class toggle_select : MonoBehaviour
 {
-    ToggleGroup toggleGroup;
     
-    public Toggle currenSelection
+    int diff = 3;
+    public GameObject room;
+    
+    void Awake()
     {
-        get { return toggleGroup.ActiveToggles().FirstOrDefault(); }
+        DontDestroyOnLoad(gameObject);
     }
+    
     // Start is called before the first frame update
     void Start()
     {
-        toggleGroup = GetComponent<ToggleGroup>();   
+             
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if (SceneManager.GetActiveScene().name == "MainLevel")
+        {
+            room = GameObject.Find("RoomGenerator");
+            room.GetComponent<RoomGeneration>().maxPath = diff;
+        }
+    }    
+
+    public void easy()
+    {
+        diff = 3;        
+    }
+    public void normal()
+    {
+        diff = 4;        
+    }
+    public void Hard()
+    {
+        diff = 5;
     }
 
-       
 }
