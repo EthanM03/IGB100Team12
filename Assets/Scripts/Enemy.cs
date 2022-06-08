@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
     public float health = 100;
 
     public GameObject Playertarget;
+    public GameObject deadPrefab;
 
     public GameObject Spawnertarget;
     public bool targetingPlayer;
@@ -89,6 +90,10 @@ public class Enemy : MonoBehaviour {
         
 
         if (health <= 0) {
+            if (deadPrefab != null)
+            {
+                Instantiate(deadPrefab, transform.position, transform.rotation);
+            }
             Destroy(this.gameObject);
             //GameManager.instance.score +=1;
             //Instantiate(deathEffect, transform.position, transform.rotation);
@@ -104,3 +109,5 @@ public class Enemy : MonoBehaviour {
         }
     }
 }
+
+

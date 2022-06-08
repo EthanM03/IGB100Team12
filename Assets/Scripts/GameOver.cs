@@ -30,7 +30,7 @@ public class GameOver : MonoBehaviour
 
     public void MainLevel()
     {
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("Tutoiral");
     }
     public void Quit()
     {
